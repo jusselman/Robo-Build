@@ -1,0 +1,74 @@
+.Head {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background: grey;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.Head .Eye1 {
+    height: 5px;
+    width: 20px;
+    border-radius: 5px;
+    background: red;
+    top: 20%;
+    left: 20%;
+    position: absolute;
+}
+
+.Head .Eye2 {
+    height: 5px;
+    width: 20px;
+    border-radius: 5px;
+    background: red;
+    top: 20%;
+    right: 20%;
+    position: absolute;
+}
+
+.Head .Mouth {
+    width: 70px;
+    height: 10px;
+    border: solid 4px #000;
+    border-color: transparent transparent #000 transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Torso {
+    height: 200px;
+    width: 200px;
+    background: grey;
+    border: 1px solid black;
+    margin: 0 auto;
+}
+
+.Arms {
+    position: absolute;
+    top: 40%;
+    display: flex;
+    width: 100%;
+}
+
+.Arms .Arm1 {
+    height: 100px;
+    width: 25px;
+    background: grey;
+    border: 1px solid black;
+    position: absolute;
+    left: 50%;
+}
+
+.Arms .Arm2 {
+    height: 100px;
+    width: 25px;
+    background: grey;
+    border: 1px solid black;
+    position: absolute;
+    right: 50%;
+}
