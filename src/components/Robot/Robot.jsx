@@ -1,17 +1,23 @@
 import React from 'react';
-import classes from './Robot';
 import Parts from './Parts/Parts';
 
 const Robot = (props) => {
+    let modifiedParts = Object.keys(props.part).map(pKey => {
+        return [...Array(props.part[pKey])].map((_, idx) => {
+            return <Parts key={pKey + idx} type={pKey} />
+        });
+    })
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
+    if (modifiedParts.length === 0) {
+        modifiedParts = <p>Add Parts Here</p>
+    }
+
     return (
-        <div className={classes.Robot}>
-            <Parts type="robot-head" />
-            <Parts type="robot-torso" />
-            <Parts type="robot-arms" />
-            <Parts type="robot-hands" />
-            <Parts type="robot-legs" />
-            <Parts type="robot-feet" />
-        </div>
+        <>
+            {modifiedParts}
+        </>
     );
 };
 

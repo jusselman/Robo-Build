@@ -1,74 +1,105 @@
+:root {
+    --bg-texture: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+    --bg-color: rgb(126, 119, 119);
+    --robo-border: 1px solid rgb(120, 115, 115);
+    --robo-radius: 5px;
+}
+
+.Head,
+.Arm1,
+.Torso,
+.Arm2,
+.Leg1,
+.Leg2,
+.Foot1,
+.Foot2 {
+    /* border: var(--robo-border);
+    border-radius: var(--robo-radius);
+    background: var(--bg-color);
+    background-image: var(--bg-texture); */
+}
+
 .Head {
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
-    background: grey;
-    margin: 0 auto;
-    position: relative;
+    background-image: url('https://svgshare.com/i/KqV.svg');
+    background-repeat: no-repeat;
+    height: 170px;
+    width: 175px;
+    margin: 0 auto
 }
 
 
-.Head .Eye1 {
+.Eye1 {
     height: 5px;
     width: 20px;
     border-radius: 5px;
-    background: red;
-    top: 20%;
-    left: 20%;
-    position: absolute;
+    background: #000;
+    grid-area: Eye1;
+
 }
 
-.Head .Eye2 {
+.Eye2 {
     height: 5px;
     width: 20px;
     border-radius: 5px;
-    background: red;
-    top: 20%;
-    right: 20%;
-    position: absolute;
+    background: #000;
+    grid-area: Eye2;
 }
 
-.Head .Mouth {
+.Mouth {
     width: 70px;
     height: 10px;
     border: solid 4px #000;
     border-color: transparent transparent #000 transparent;
     border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
+}
+
+.Arms1 {
+    height: 150px;
+    width: 375px;
+    margin: 0 auto;
+    background-image: url('https://svgshare.com/i/Kpd.svg');
+    background-repeat: no-repeat;
+}
+
+.Arms2 {
+    background-image: url('https://svgshare.com/i/Kpe.svg');
+}
+
+.Arms3 {
+    background-image: url('https://svgshare.com/i/KrA.svg');
+}
+
+.Legs1 {
+    background-image: url('https://svgshare.com/i/Kqf.svg');
 }
 
 .Torso {
     height: 200px;
     width: 200px;
-    background: grey;
-    border: 1px solid black;
     margin: 0 auto;
 }
 
-.Arms {
-    position: absolute;
-    top: 40%;
-    display: flex;
-    width: 100%;
+.Legs1 {
+    height: 100px;
+    width: 304px;
+    margin: 0 auto;
+    background-image: url('https://svgshare.com/i/Kqf.svg');
 }
 
-.Arms .Arm1 {
+.Leg2 {
     height: 100px;
-    width: 25px;
-    background: grey;
-    border: 1px solid black;
-    position: absolute;
-    left: 50%;
+    width: 30px;
+    margin: 0 auto;
 }
 
-.Arms .Arm2 {
-    height: 100px;
-    width: 25px;
-    background: grey;
-    border: 1px solid black;
-    position: absolute;
-    right: 50%;
+.Foot1 {
+    height: 30px;
+    width: 40px;
+    margin: 0 auto;
+}
+
+.Foot2 {
+    height: 30px;
+    width: 40px;
+    margin: 0 auto;
 }

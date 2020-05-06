@@ -8,36 +8,20 @@ class Parts extends Component {
         let part = null;
 
         switch (this.props.type) {
-            case ('robot-head'):
-                part = <div className={classes.Head}>
-                    <div className={classes.Eye1}></div>
-                    <div className={classes.Eye2}></div>
-                    <div className={classes.Mouth}></div>
-                </div>;
+            case ('head'):
+                part = <div className={classes.Head}></div>;
                 break;
-            case ('robot-torso'):
-                part = <div className={classes.Torso}></div>;
+            case ('arms1'):
+                part = <div className={classes.Arms1}></div>;
                 break;
-            case ('robot-arms'):
-                part = <div className={classes.Arms}>
-                    <div className={classes.Arm1}></div>
-                    <div className={classes.Arm2}></div>
-                </div>
+            case ('arms2'):
+                part = <div className={classes.Arms2}></div>;
                 break;
-            case ('robot-hands'):
-                part = <div className={classes.Arms}>
-                    <div className={classes.Hand1}></div>
-                    <div className={classes.Hand2}></div>
-                </div>
+            case ('arms3'):
+                part = <div className={classes.Arms3}></div>;
                 break;
-            case ('robot-legs'):
-                part = <div className={classes.Legs}>
-                    <div className={classes.Leg1}></div>
-                    <div className={classes.Leg2}></div>
-                </div>
-                break;
-            case ('robot-feet'):
-                part = <div className={classes.Feet}></div>;
+            case ('legs1'):
+                part = <div className={classes.Legs1}></div >
                 break;
             default:
                 part = null;

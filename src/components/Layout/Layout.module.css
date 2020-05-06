@@ -1,10 +1,9 @@
 .Content {
     text-align: center;
-    margin: 2rem auto;
+    margin: 0 auto;
     background-image: linear-gradient(to right, rgb(197, 201, 201), rgb(123, 174, 174));
     border: 1px solid rgb(104, 126, 126);
     border-radius: 5px;
-    padding: 2rem 0;
     width: 80%;
     height: 90vh;
 }
