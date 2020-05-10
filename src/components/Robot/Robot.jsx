@@ -2,9 +2,9 @@ import React from 'react';
 import Parts from './Parts/Parts';
 
 const Robot = (props) => {
-    let modifiedParts = Object.keys(props.part).map(pKey => {
-        return [...Array(props.part[pKey])].map((_, idx) => {
-            return <Parts key={pKey + idx} type={pKey} />
+    let modifiedParts = Object.keys(props.parts).map(partKey => {
+        return [...Array(props.parts[partKey])].map((_, idx) => {
+            return <Parts key={partKey + idx} type={partKey} />
         });
     })
         .reduce((arr, el) => {

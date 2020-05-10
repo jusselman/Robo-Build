@@ -24,9 +24,8 @@
     background-repeat: no-repeat;
     height: 170px;
     width: 175px;
-    margin: 0 auto
+    margin: 0 auto;
 }
-
 
 .Eye1 {
     height: 5px;
@@ -63,14 +62,26 @@
 
 .Arms2 {
     background-image: url('https://svgshare.com/i/Kpe.svg');
+    height: 126px;
+    width: 375px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
 }
 
 .Arms3 {
     background-image: url('https://svgshare.com/i/KrA.svg');
+    height: 130px;
+    width: 392px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
 }
 
 .Legs1 {
     background-image: url('https://svgshare.com/i/Kqf.svg');
+    height: 150px;
+    width: 375px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
 }
 
 .Torso {
@@ -85,6 +96,12 @@
     margin: 0 auto;
     background-image: url('https://svgshare.com/i/Kqf.svg');
 }
+
+.Legs1:hover {
+    fill: red;
+}
+
+
 
 .Leg2 {
     height: 100px;

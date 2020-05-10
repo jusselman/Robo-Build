@@ -35,22 +35,26 @@
 
 .BuildControl .Less {
     background-color: rgb(255, 197, 197);
-    color: white;
+    color: #000;
+    border-radius: 100%;
+    transition: .3s ease all;
 }
 
 .BuildControl .More {
     background-color: rgb(185, 209, 216);
-    color: white;
+    color: #000;
+    border-radius: 100%;
+    transition: .3s ease all;
 }
 
 .BuildControl .Less:hover,
 .BuildControl .Less:active {
-    background-color: #DAA972;
+    background-color: rgb(186, 41, 41);
     color: white;
 }
 
 .BuildControl .More:hover,
 .BuildControl .More:active {
-    background-color: #99703F;
+    background-color: rgb(31, 111, 215);
     color: white;
 }
