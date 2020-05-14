@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Robot from '../../components/Robot/Robot';
 import BuildControls from '../../components/Robot/BuildControls/BuildControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Robot/OrderSummary/OrderSummary';
 
 const PARTS_PRICES = {
     head: 100,
@@ -21,11 +23,11 @@ class RoboBuilder extends Component {
             legs1: 0
         },
         totalPrice: 0,
-        buyable: false
+        buyable: false,
+        buying: false
     }
 
-    updatePurchaseState(parts) {
-
+    updateBuyState(parts) {
         const sum = Object.keys(parts)
             .map(pKey => {
                 return parts[pKey]
@@ -47,7 +49,7 @@ class RoboBuilder extends Component {
         const prevPrice = this.state.totalPrice;
         const updatedPrice = prevPrice + addPrice;
         this.setState({ totalPrice: updatedPrice, parts: updatedParts });
-        this.updatePurchaseState(updatedParts);
+        this.updateBuyState(updatedParts);
     }
 
     removePartHandler = (type) => {
@@ -64,7 +66,25 @@ class RoboBuilder extends Component {
         const prevPrice = this.state.totalPrice;
         const updatedPrice = prevPrice - subractPrice;
         this.setState({ totalPrice: updatedPrice, parts: updatedParts });
-        this.updatePurchaseState(updatedParts);
+        this.updateBuyState(updatedParts);
+    }
+
+    buyHandler = () => {
+        console.log('before buying:true');
+        this.setState({ buying: true })
+        console.log('after buying:true');
+    }
+
+    buyCancelHandler = () => {
+        this.setState({ buying: false });
+    }
+
+    cancelCheckoutHandler = () => {
+        this.setState({ buying: false });
+    }
+
+    realizedCheckoutHandler = () => {
+        alert('Checkout Realized');
     }
 
     render() {
@@ -79,6 +99,16 @@ class RoboBuilder extends Component {
         return (
 
             <>
+                <Modal
+                    show={this.state.buying}
+                    modalClosed={this.buyCancelHandler}
+                >
+                    <OrderSummary
+                        parts={this.state.parts}
+                        buyCancelled={this.cancelCheckoutHandler}
+                        buyRealized={this.realizedCheckoutHandler}
+                    />
+                </Modal>
                 <Robot
                     parts={this.state.parts}
                 />
@@ -88,6 +118,7 @@ class RoboBuilder extends Component {
                     disabled={disabledInfo}
                     price={this.state.totalPrice}
                     buyable={this.state.buyable}
+                    bought={this.buyHandler}
                 />
             </>
         );
