@@ -1,24 +1,3 @@
-:root {
-    --bg-texture: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
-    --bg-color: rgb(126, 119, 119);
-    --robo-border: 1px solid rgb(120, 115, 115);
-    --robo-radius: 5px;
-}
-
-.Head,
-.Arm1,
-.Torso,
-.Arm2,
-.Leg1,
-.Leg2,
-.Foot1,
-.Foot2 {
-    /* border: var(--robo-border);
-    border-radius: var(--robo-radius);
-    background: var(--bg-color);
-    background-image: var(--bg-texture); */
-}
-
 .Head {
     background-image: url('https://svgshare.com/i/KqV.svg');
     background-repeat: no-repeat;
@@ -27,33 +6,8 @@
     margin: 0 auto;
 }
 
-.Eye1 {
-    height: 5px;
-    width: 20px;
-    border-radius: 5px;
-    background: #000;
-    grid-area: Eye1;
-
-}
-
-.Eye2 {
-    height: 5px;
-    width: 20px;
-    border-radius: 5px;
-    background: #000;
-    grid-area: Eye2;
-}
-
-.Mouth {
-    width: 70px;
-    height: 10px;
-    border: solid 4px #000;
-    border-color: transparent transparent #000 transparent;
-    border-radius: 50%;
-}
-
 .Arms1 {
-    height: 150px;
+    height: 130px;
     width: 375px;
     margin: 0 auto;
     background-image: url('https://svgshare.com/i/Kpd.svg');
@@ -62,7 +16,7 @@
 
 .Arms2 {
     background-image: url('https://svgshare.com/i/Kpe.svg');
-    height: 126px;
+    height: 128px;
     width: 375px;
     margin: 0 auto;
     background-repeat: no-repeat;
@@ -79,44 +33,32 @@
 .Legs1 {
     background-image: url('https://svgshare.com/i/Kqf.svg');
     height: 150px;
-    width: 375px;
+    width: 304px;
     margin: 0 auto;
     background-repeat: no-repeat;
 }
 
-.Torso {
-    height: 200px;
-    width: 200px;
-    margin: 0 auto;
-}
+@media (max-width: 500px) {
 
-.Legs1 {
-    height: 100px;
-    width: 304px;
-    margin: 0 auto;
-    background-image: url('https://svgshare.com/i/Kqf.svg');
-}
+    .Head,
+    .Arms1,
+    .Arms2,
+    .Arms3,
+    .Legs1 {
+        transform: scale(.5);
+        margin: -65px auto;
+    }
 
-.Legs1:hover {
-    fill: red;
-}
+    .Head {
+        height: 165px;
+    }
 
+    .Arms2 {
+        height: 175px;
+    }
 
-
-.Leg2 {
-    height: 100px;
-    width: 30px;
-    margin: 0 auto;
-}
-
-.Foot1 {
-    height: 30px;
-    width: 40px;
-    margin: 0 auto;
-}
-
-.Foot2 {
-    height: 30px;
-    width: 40px;
-    margin: 0 auto;
+    .Legs1 {
+        height: 170px;
+        width: 309px;
+    }
 }

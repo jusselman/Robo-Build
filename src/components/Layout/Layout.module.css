@@ -4,5 +4,12 @@
     background-image: linear-gradient(to right, rgb(197, 201, 201), rgb(123, 174, 174));
     border: 1px solid rgb(104, 126, 126);
     border-radius: 5px;
-    width: 80%;
+    width: fit-content;
+    padding: 20px;
+}
+
+@media (max-width: 500px) {
+    .Content {
+        padding: 0;
+    }
 }

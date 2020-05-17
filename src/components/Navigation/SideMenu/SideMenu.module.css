@@ -1,0 +1,32 @@
+.SideMenu {
+    position: fixed;
+    width: 280px;
+    max-width: 70%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    background-image: linear-gradient(to right, rgb(197, 201, 201), rgb(123, 174, 174));
+    padding: 30px 20px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+}
+
+@media(min-width: 500px) {
+    .SideMenu {
+        display: none;
+    }
+}
+
+.Open {
+    transform: translateX(0);
+}
+
+.Close {
+    transform: translateX(-100%);
+}
+
+.Logo {
+    height: 11%;
+    /* margin-bottom: 32px; */
+}

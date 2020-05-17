@@ -1,0 +1,29 @@
+/* .Toggle {
+    position: absolute;
+    right: 25px;
+}
+
+.Toggle span {
+    height: 3px;
+    width: 25px;
+    background: #000;
+    position: relative;
+    display: block;
+    margin-bottom: 5px;
+} */
+
+@media (max-width: 500) {
+    .Toggle {
+        position: absolute;
+        right: 25px;
+    }
+
+    .Toggle span {
+        height: 3px;
+        width: 25px;
+        background: #000;
+        position: relative;
+        display: block;
+        margin-bottom: 5px;
+    }
+}

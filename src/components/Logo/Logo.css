@@ -1,0 +1,11 @@
+.Logo {
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 5px;
+    height: 100%;
+}
+
+.Logo img {
+    height: 100%;
+}

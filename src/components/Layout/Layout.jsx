@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Layout.module.css';
+import Toolbar from '../Navigation/Toolbar/Toolbar';
+import SideMenu from '../Navigation/SideMenu/SideMenu';
 
 
-const Layout = (props) => (
-    <>
-        <div>Toolbar, SideBar, Backdrop</div>
-        <main className={classes.Content}>
-            {props.children}
-        </main>
-    </>
-);
+class Layout extends Component {
+    state = {
+        showSideMenu: false
+    }
 
+    sideMenuClose = () => {
+        console.log('sideMenuClose function')
+        this.setState({ showSideMenu: false })
+    }
+
+    render() {
+        return (
+            <>
+                <Toolbar />
+                <SideMenu
+                    open={this.state.showSideMenu}
+                    close={this.sideMenuClose}
+                />
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
+            </>
+        )
+    }
+
+}
 
 export default Layout;

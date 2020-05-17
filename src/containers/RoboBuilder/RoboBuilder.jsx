@@ -5,11 +5,11 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Robot/OrderSummary/OrderSummary';
 
 const PARTS_PRICES = {
-    head: 100,
-    arms1: 150,
-    arms2: 125,
-    arms3: 175,
-    legs1: 225
+    head: 100.50,
+    arms1: 150.75,
+    arms2: 125.25,
+    arms3: 175.55,
+    legs1: 225.99
 }
 
 class RoboBuilder extends Component {
@@ -107,6 +107,7 @@ class RoboBuilder extends Component {
                         parts={this.state.parts}
                         buyCancelled={this.cancelCheckoutHandler}
                         buyRealized={this.realizedCheckoutHandler}
+                        price={this.state.totalPrice}
                     />
                 </Modal>
                 <Robot
