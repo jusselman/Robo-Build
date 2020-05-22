@@ -14,10 +14,18 @@ class Layout extends Component {
         this.setState({ showSideMenu: false })
     }
 
+    sideMenuToggleHandler = () => {
+        this.setState((prevState) => {
+            return { showSideMenu: !prevState.showSideMenu };
+        });
+    }
+
     render() {
         return (
             <>
-                <Toolbar />
+                <Toolbar
+                    menuToggleClicked={this.sideMenuToggleHandler}
+                />
                 <SideMenu
                     open={this.state.showSideMenu}
                     close={this.sideMenuClose}

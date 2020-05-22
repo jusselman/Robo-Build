@@ -13,6 +13,9 @@ const SideMenu = (props) => {
         <>
             <Backdrop show={props.open} clicked={props.close} />
             <div className={attachedClasses.join(' ')}>
+                <div className={classes.Exit}>
+                    <p onClick={props.close} className={classes.ExitButton}>x</p>
+                </div>
                 <div className={classes.Logo}>
                     <Logo />
                 </div>

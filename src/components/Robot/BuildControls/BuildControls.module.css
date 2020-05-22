@@ -58,6 +58,12 @@
     }
 }
 
+@media (max-width: 500px) {
+    .OrderButton {
+        padding: 0;
+    }
+}
+
 /* @media screen and (max-width: 992px) {
     .BuildControls {
         width: 100%;

@@ -11,5 +11,6 @@
 @media (max-width: 500px) {
     .Content {
         padding: 0;
+        width: 90%;
     }
 }

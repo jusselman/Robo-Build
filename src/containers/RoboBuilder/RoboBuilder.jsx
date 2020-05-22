@@ -3,6 +3,9 @@ import Robot from '../../components/Robot/Robot';
 import BuildControls from '../../components/Robot/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Robot/OrderSummary/OrderSummary';
+import Loading from '../../components/UI/Loading/Loading';
+import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
+import axios from '../../axios-orders';
 
 const PARTS_PRICES = {
     head: 100.50,
@@ -15,17 +18,24 @@ const PARTS_PRICES = {
 class RoboBuilder extends Component {
 
     state = {
-        parts: {
-            head: 0,
-            arms1: 0,
-            arms2: 0,
-            arms3: 0,
-            legs1: 0
-        },
+        parts: null,
         totalPrice: 0,
         buyable: false,
-        buying: false
+        buying: false,
+        loading: false
     }
+
+    componentDidMount() {
+        axios.get('https://robot-builder-58e42.firebaseio.com/parts.json')
+            .then(res => {
+                this.setState({ parts: res.data })
+            })
+            .catch(err => {
+                this.setState({ err: true })
+            })
+    }
+
+
 
     updateBuyState(parts) {
         const sum = Object.keys(parts)
@@ -84,7 +94,29 @@ class RoboBuilder extends Component {
     }
 
     realizedCheckoutHandler = () => {
-        alert('Checkout Realized');
+        this.setState({ loading: true })
+        const order = {
+            parts: this.state.parts,
+            price: this.state.totalPrice,
+            client: {
+                name: 'Josue Uselmano',
+                address: {
+                    street: 'Hyde St 204',
+                    zip: '94091',
+                    country: 'United States'
+                },
+                email: 'josue@nosway'
+            },
+            deliverType: 'express'
+        }
+
+        axios.post('/orders.json', order)
+            .then(res => {
+                this.setState({ loading: false, buying: false });
+            })
+            .catch(err => {
+                this.setState({ loading: false, buying: false });
+            });
     }
 
     render() {
@@ -96,34 +128,51 @@ class RoboBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
 
-        return (
 
+        let orderSummary = null;
+
+        let robot = this.state.error ? <p>Parts cannot be loaded</p> : <Loading />;
+
+        if (this.state.parts) {
+            robot = (
+                <>
+                    <Robot
+                        parts={this.state.parts}
+                    />
+                    <BuildControls
+                        partAdded={this.addPartHandler}
+                        partSubtracted={this.removePartHandler}
+                        disabled={disabledInfo}
+                        price={this.state.totalPrice}
+                        buyable={this.state.buyable}
+                        bought={this.buyHandler}
+                    />
+                </>
+            );
+            orderSummary = <OrderSummary
+                parts={this.state.parts}
+                buyCancelled={this.cancelCheckoutHandler}
+                buyRealized={this.realizedCheckoutHandler}
+                price={this.state.totalPrice}
+            />
+        }
+
+        if (this.state.loading) {
+            orderSummary = <Loading />
+        }
+
+        return (
             <>
                 <Modal
                     show={this.state.buying}
                     modalClosed={this.buyCancelHandler}
                 >
-                    <OrderSummary
-                        parts={this.state.parts}
-                        buyCancelled={this.cancelCheckoutHandler}
-                        buyRealized={this.realizedCheckoutHandler}
-                        price={this.state.totalPrice}
-                    />
+                    {orderSummary}
                 </Modal>
-                <Robot
-                    parts={this.state.parts}
-                />
-                <BuildControls
-                    partAdded={this.addPartHandler}
-                    partSubtracted={this.removePartHandler}
-                    disabled={disabledInfo}
-                    price={this.state.totalPrice}
-                    buyable={this.state.buyable}
-                    bought={this.buyHandler}
-                />
+                {robot}
             </>
         );
     }
 }
 
-export default RoboBuilder; 
+export default ErrorHandler(RoboBuilder, axios); 
