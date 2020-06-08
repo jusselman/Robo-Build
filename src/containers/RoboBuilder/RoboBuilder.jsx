@@ -35,8 +35,6 @@ class RoboBuilder extends Component {
             })
     }
 
-
-
     updateBuyState(parts) {
         const sum = Object.keys(parts)
             .map(pKey => {
@@ -94,29 +92,30 @@ class RoboBuilder extends Component {
     }
 
     realizedCheckoutHandler = () => {
-        this.setState({ loading: true })
-        const order = {
-            parts: this.state.parts,
-            price: this.state.totalPrice,
-            client: {
-                name: 'Josue Uselmano',
-                address: {
-                    street: 'Hyde St 204',
-                    zip: '94091',
-                    country: 'United States'
-                },
-                email: 'josue@nosway'
-            },
-            deliverType: 'express'
-        }
+        // this.setState({ loading: true })
+        // const order = {
+        //     parts: this.state.parts,
+        //     price: this.state.totalPrice,
+        //     client: {
+        //         name: 'Josue Uselmano',
+        //         address: {
+        //             street: 'Hyde St 204',
+        //             zip: '94091',
+        //             country: 'United States'
+        //         },
+        //         email: 'josue@nosway'
+        //     },
+        //     deliverType: 'express'
+        // }
 
-        axios.post('/orders.json', order)
-            .then(res => {
-                this.setState({ loading: false, buying: false });
-            })
-            .catch(err => {
-                this.setState({ loading: false, buying: false });
-            });
+        // axios.post('/orders.json', order)
+        //     .then(res => {
+        //         this.setState({ loading: false, buying: false });
+        //     })
+        //     .catch(err => {
+        //         this.setState({ loading: false, buying: false });
+        //     });
+        this.props.history.push('/checkout');
     }
 
     render() {

@@ -3,7 +3,7 @@ body {
   padding: 0;
   text-align: center;
   font-family: 'Righteous', cursive;
-  background-image: url('https://images.unsplash.com/photo-1513828418004-7aa1c7e5c824?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1560&q=80');
+  background-image: linear-gradient(to right, rgb(197, 201, 201), rgb(123, 174, 174));
 }
 
 h1 {

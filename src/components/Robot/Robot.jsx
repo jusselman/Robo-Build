@@ -1,7 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Parts from './Parts/Parts';
 
 const Robot = (props) => {
+    console.log(props)
     let modifiedParts = Object.keys(props.parts).map(partKey => {
         return [...Array(props.parts[partKey])].map((_, idx) => {
             return <Parts key={partKey + idx} type={partKey} />
@@ -21,4 +23,4 @@ const Robot = (props) => {
     );
 };
 
-export default Robot; 
+export default withRouter(Robot); 
