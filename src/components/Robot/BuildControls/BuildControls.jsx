@@ -3,7 +3,7 @@ import classes from './BuildControls.module.css';
 import BuildControl from './BuildControl/BuildControl';
 
 const controls = [
-    { label: 'Head', type: 'head' },
+    { label: 'Head', type: 'ahead' },
     { label: 'Arms1', type: 'arms1' },
     { label: 'Arms2', type: 'arms2' },
     { label: 'Arms3', type: 'arms3' },

@@ -8,7 +8,7 @@ class Parts extends Component {
         let part = null;
 
         switch (this.props.type) {
-            case ('head'):
+            case ('ahead'):
                 part = <div className={classes.Head}></div>;
                 break;
             case ('arms1'):

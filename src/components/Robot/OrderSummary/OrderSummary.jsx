@@ -18,7 +18,7 @@ class OrderSummary extends Component {
             });
 
         return (
-            <>
+            <div className="OrderSummary">
                 <h1>Robot Order</h1>
                 <p>Your bot has the following parts: </p>
                 <ul className={classes.uList}>
@@ -28,7 +28,7 @@ class OrderSummary extends Component {
                 <p>Checkout?</p>
                 <Button btnType="Danger" clicked={this.props.buyCancelled}>CANCEL</Button>
                 <Button btnType="Success" clicked={this.props.buyRealized}>CONTINUE</Button>
-            </>
+            </div>
         )
     }
 };

@@ -8,7 +8,7 @@ import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 import axios from '../../axios-orders';
 
 const PARTS_PRICES = {
-    head: 100.50,
+    ahead: 100.50,
     arms1: 150.75,
     arms2: 125.25,
     arms3: 175.55,
@@ -115,7 +115,17 @@ class RoboBuilder extends Component {
         //     .catch(err => {
         //         this.setState({ loading: false, buying: false });
         //     });
-        this.props.history.push('/checkout');
+        const queryParams = [];
+        for (let i in this.state.parts) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.parts[i]));
+        }
+
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     }
 
     render() {

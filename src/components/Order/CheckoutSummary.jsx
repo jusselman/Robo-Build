@@ -6,7 +6,8 @@ import Button from '../UI/Button/Button';
 const CheckoutSummary = (props) => {
     return (
         <div className={classes.CheckoutSummary}>
-            <h1>Enjoy your robot</h1>
+            <h1>Robot Preview</h1>
+            <h2>Click below to Proceed or Cancel</h2>
             <div className={classes.CheckoutContainer}>
                 <Robot
                     parts={props.parts}
