@@ -26,7 +26,6 @@ class Parts extends Component {
             default:
                 part = null;
         }
-
         return part;
     }
 }

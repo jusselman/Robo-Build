@@ -92,34 +92,12 @@ class RoboBuilder extends Component {
     }
 
     realizedCheckoutHandler = () => {
-        // this.setState({ loading: true })
-        // const order = {
-        //     parts: this.state.parts,
-        //     price: this.state.totalPrice,
-        //     client: {
-        //         name: 'Josue Uselmano',
-        //         address: {
-        //             street: 'Hyde St 204',
-        //             zip: '94091',
-        //             country: 'United States'
-        //         },
-        //         email: 'josue@nosway'
-        //     },
-        //     deliverType: 'express'
-        // }
 
-        // axios.post('/orders.json', order)
-        //     .then(res => {
-        //         this.setState({ loading: false, buying: false });
-        //     })
-        //     .catch(err => {
-        //         this.setState({ loading: false, buying: false });
-        //     });
         const queryParams = [];
         for (let i in this.state.parts) {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.parts[i]));
         }
-
+        queryParams.push('price=' + this.state.totalPrice);
         const queryString = queryParams.join('&');
 
         this.props.history.push({
