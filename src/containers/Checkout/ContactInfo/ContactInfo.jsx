@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactInfo.module.css';
 import axios from '../../../axios-orders';
+import Loading from '../../../components/UI/Loading/Loading';
 
 class ContactInfo extends Component {
     state = {
@@ -34,28 +35,35 @@ class ContactInfo extends Component {
 
         axios.post('/orders.json', order)
             .then(res => {
-                this.setState({ loading: false, buying: false });
+                this.setState({ loading: false });
+                this.props.history.push('/');
             })
             .catch(err => {
-                this.setState({ loading: false, buying: false });
+                this.setState({ loading: false });
             });
     }
 
     render() {
+        let form = (
+            <form>
+                <input className={classes.Input} type='text' name='name' placerholder="Name" />
+                <input className={classes.Input} type='email' name='email' placerholder="Email" />
+                <input className={classes.Input} type='text' name='street' placerholder="Street" />
+                <input className={classes.Input} type='text' name='postal' placerholder="Postal Code" />
+                <Button
+                    className={classes.InfoBtn}
+                    btnType="Success"
+                    clicked={this.orderHandler}
+                >Order</Button>
+            </form>
+        );
+        if (this.state.loading) {
+            form = <Loading />
+        }
         return (
             <div className={classes.ContactInfo}>
                 <h2>Please Enter Contact Info</h2>
-                <form>
-                    <input className={classes.Input} type='text' name='name' placerholder="Name" />
-                    <input className={classes.Input} type='email' name='email' placerholder="Email" />
-                    <input className={classes.Input} type='text' name='street' placerholder="Street" />
-                    <input className={classes.Input} type='text' name='postal' placerholder="Postal Code" />
-                    <Button
-                        className={classes.InfoBtn}
-                        btnType="Success"
-                        clicked={this.orderHandler}
-                    >Order</Button>
-                </form>
+                {form}
             </div>
         )
     }

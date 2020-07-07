@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CheckoutSummary from '../../components/Order/CheckoutSummary';
+import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import { Route } from 'react-router-dom';
 import ContactInfo from './ContactInfo/ContactInfo';
 
@@ -42,10 +42,11 @@ class Checkout extends Component {
                 />
                 <Route
                     path={this.props.match.path + '/contact-info'}
-                    render={() => (
+                    render={(props) => (
                         <ContactInfo
                             parts={this.state.parts}
                             price={this.state.totalPrice}
+                            {...props}
                         />)}
                 />
             </div>

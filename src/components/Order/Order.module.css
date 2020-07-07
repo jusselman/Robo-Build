@@ -1,0 +1,17 @@
+.Order {
+    width: 80%;
+    border: 1px solid grey;
+    box-shadow: 0 3px 4px rgb(65, 65, 65);
+    padding: 12px;
+    background-image: linear-gradient(to left, rgb(197, 201, 201), rgb(123, 174, 174));
+    margin: 10px auto;
+    box-sizing: border-box;
+    z-index: 0;
+    transition: .3s all ease-in-out;
+
+}
+
+.Order:hover {
+    transform: scale(1.05);
+    z-index: 999;
+}
