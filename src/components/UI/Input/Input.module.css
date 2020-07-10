@@ -1,0 +1,38 @@
+.Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.InputEl {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 75%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.InputEl::placeholder {
+    color: rgb(104, 104, 104);
+}
+
+.InputEl:focus {
+    outline: none;
+    background-color: #ccc;
+}
+
+select.InputEl {
+    text-align: center;
+}

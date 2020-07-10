@@ -10,7 +10,6 @@ class Layout extends Component {
     }
 
     sideMenuClose = () => {
-        console.log('sideMenuClose function')
         this.setState({ showSideMenu: false })
     }
 

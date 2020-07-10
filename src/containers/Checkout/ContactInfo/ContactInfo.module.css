@@ -1,16 +1,17 @@
 .ContactInfo {
-    margin: 20px auto;
-    width: 80%;
-    text-align: center;
-    box-shadow: 0 2px 5px grey;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.Input {
+    outline: none;
+    border: 1px solid rgb(155, 155, 155);
+    background-image: linear-gradient(to left, rgb(197, 201, 201), rgb(123, 174, 174));
+    font: inherit;
+    padding: 6px 10px;
     display: block;
     margin: 0 auto;
 }
+
+/* .ContactInfo input {
+    width: 75%;
+    margin: 0 auto;
+} */
 
 .InfoBtn {
     display: block;

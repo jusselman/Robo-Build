@@ -21,7 +21,6 @@ class Checkout extends Component {
             }
         }
         this.setState({ parts: parts, totalPrice: price })
-        console.log(price);
     }
 
     cancelCheckoutHandler = () => {

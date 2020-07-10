@@ -78,9 +78,7 @@ class RoboBuilder extends Component {
     }
 
     buyHandler = () => {
-        console.log('before buying:true');
         this.setState({ buying: true })
-        console.log('after buying:true');
     }
 
     buyCancelHandler = () => {
