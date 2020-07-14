@@ -8,10 +8,10 @@
     margin: 0 auto;
 }
 
-/* .ContactInfo input {
-    width: 75%;
-    margin: 0 auto;
-} */
+.Contact-info select {
+    width: 400px;
+    text-align-last: center;
+}
 
 .InfoBtn {
     display: block;

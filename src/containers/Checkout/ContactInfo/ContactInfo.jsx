@@ -14,7 +14,12 @@ class ContactInfo extends Component {
                     type: 'text',
                     placeholder: 'Name'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             }
             ,
             street: {
@@ -23,7 +28,12 @@ class ContactInfo extends Component {
                     type: 'text',
                     placeholder: 'Street Address'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             },
             zip: {
                 elType: 'input',
@@ -31,7 +41,14 @@ class ContactInfo extends Component {
                     type: 'text',
                     placeholder: 'Zip Code'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 6
+                },
+                valid: false,
+                touched: false
             },
             country: {
                 elType: 'input',
@@ -39,7 +56,12 @@ class ContactInfo extends Component {
                     type: 'text',
                     placeholder: 'Country'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             },
             email: {
                 elType: 'input',
@@ -47,19 +69,31 @@ class ContactInfo extends Component {
                     type: 'text',
                     placeholder: 'Email'
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             },
             deliverType: {
                 elType: 'select',
                 elConfig: {
                     options: [
                         { value: 'fastest', displayValue: 'Fastest' },
-                        { value: 'cheapest', displayValue: 'Cheapest' }
+                        { value: 'cheapest', displayValue: 'Cheapest' },
+                        { value: 'wildcare', displayValue: 'Wild Card' }
                     ]
                 },
-                value: ''
+                value: '',
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false
             }
         },
+        formValid: false,
         loading: false
 
     }
@@ -87,6 +121,24 @@ class ContactInfo extends Component {
             });
     }
 
+    validityCheck(value, rules) {
+        let isValid = true;
+
+        if (rules.required) {
+            isValid = value.trim() !== '' && isValid;
+        }
+
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+
+        return isValid;
+    }
+
     inputHandler = (e, inputIdentity) => {
         const updatedForm = {
             ...this.state.orderForm
@@ -95,8 +147,15 @@ class ContactInfo extends Component {
             ...updatedForm[inputIdentity]
         };
         updatedFormEl.value = e.target.value;
+        updatedFormEl.valid = this.validityCheck(updatedFormEl.value, updatedFormEl.validation);
+        updatedFormEl.touched = true;
         updatedForm[inputIdentity] = updatedFormEl;
-        this.setState({ orderForm: updatedForm });
+
+        let formValid = true;
+        for (let inputIdentifier in updatedForm) {
+            formValid = updatedForm[inputIdentifier].valid && formValid;
+        }
+        this.setState({ orderForm: updatedForm, formValid: formValid });
     }
 
     render() {
@@ -116,12 +175,16 @@ class ContactInfo extends Component {
                         elType={formEl.config.elType}
                         elConfig={formEl.config.elConfig}
                         value={formEl.config.value}
+                        invalid={!formEl.config.valid}
+                        shouldValidate={formEl.config.validation}
+                        touched={formEl.config.touched}
                         changed={(e) => this.inputHandler(e, formEl.id)}
                     />
                 ))}
                 <Button
                     className={classes.InfoBtn}
                     btnType="Success"
+                    disabled={!this.state.formValid}
                 >Order</Button>
             </form>
         );
