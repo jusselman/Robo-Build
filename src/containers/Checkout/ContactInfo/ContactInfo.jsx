@@ -82,15 +82,13 @@ class ContactInfo extends Component {
                     options: [
                         { value: 'fastest', displayValue: 'Fastest' },
                         { value: 'cheapest', displayValue: 'Cheapest' },
-                        { value: 'wildcare', displayValue: 'Wild Card' }
+                        { value: 'wildcard', displayValue: 'Wild Card' }
                     ]
                 },
-                value: '',
-                validation: {
-                    required: true
-                },
-                valid: false,
-                touched: false
+                value: 'fastest',
+                validation: {},
+                valid: false
+                // touched: false
             }
         },
         formValid: false,
@@ -123,6 +121,9 @@ class ContactInfo extends Component {
 
     validityCheck(value, rules) {
         let isValid = true;
+        if (!rules) {
+            return true;
+        }
 
         if (rules.required) {
             isValid = value.trim() !== '' && isValid;
