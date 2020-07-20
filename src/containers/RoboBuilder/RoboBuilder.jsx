@@ -10,21 +10,12 @@ import ErrorHandler from '../../components/ErrorHandler/ErrorHandler';
 import axios from '../../axios-orders';
 import * as actionTypes from '../../store/actions';
 
-const PARTS_PRICES = {
-    ahead: 100.50,
-    arms1: 150.75,
-    arms2: 125.25,
-    arms3: 175.55,
-    legs1: 225.99
-}
-
 class RoboBuilder extends Component {
 
     state = {
-        totalPrice: 0,
-        buyable: false,
         buying: false,
-        loading: false
+        loading: false,
+        error: false
     }
 
     componentDidMount() {
@@ -45,39 +36,39 @@ class RoboBuilder extends Component {
             .reduce((sum, el) => {
                 return sum + el;
             }, 0);
-        this.setState({ buyable: sum > 0 })
+        return sum > 0;
     }
 
-    addPartHandler = (type) => {
-        const prevCount = this.state.parts[type];
-        const updatedCount = prevCount + 1;
-        const updatedParts = {
-            ...this.state.parts
-        };
-        updatedParts[type] = updatedCount;
-        const addPrice = PARTS_PRICES[type];
-        const prevPrice = this.state.totalPrice;
-        const updatedPrice = prevPrice + addPrice;
-        this.setState({ totalPrice: updatedPrice, parts: updatedParts });
-        this.updateBuyState(updatedParts);
-    }
+    // addPartHandler = (type) => {
+    //     const prevCount = this.state.parts[type];
+    //     const updatedCount = prevCount + 1;
+    //     const updatedParts = {
+    //         ...this.state.parts
+    //     };
+    //     updatedParts[type] = updatedCount;
+    //     const addPrice = PARTS_PRICES[type];
+    //     const prevPrice = this.state.totalPrice;
+    //     const updatedPrice = prevPrice + addPrice;
+    //     this.setState({ totalPrice: updatedPrice, parts: updatedParts });
+    //     this.updateBuyState(updatedParts);
+    // }
 
-    removePartHandler = (type) => {
-        const prevCount = this.state.parts[type];
-        if (prevCount <= 0) {
-            return;
-        }
-        const updatedCount = prevCount - 1;
-        const updatedParts = {
-            ...this.state.parts
-        };
-        updatedParts[type] = updatedCount;
-        const subractPrice = PARTS_PRICES[type];
-        const prevPrice = this.state.totalPrice;
-        const updatedPrice = prevPrice - subractPrice;
-        this.setState({ totalPrice: updatedPrice, parts: updatedParts });
-        this.updateBuyState(updatedParts);
-    }
+    // removePartHandler = (type) => {
+    //     const prevCount = this.state.parts[type];
+    //     if (prevCount <= 0) {
+    //         return;
+    //     }
+    //     const updatedCount = prevCount - 1;
+    //     const updatedParts = {
+    //         ...this.state.parts
+    //     };
+    //     updatedParts[type] = updatedCount;
+    //     const subractPrice = PARTS_PRICES[type];
+    //     const prevPrice = this.state.totalPrice;
+    //     const updatedPrice = prevPrice - subractPrice;
+    //     this.setState({ totalPrice: updatedPrice, parts: updatedParts });
+    //     this.updateBuyState(updatedParts);
+    // }
 
     buyHandler = () => {
         this.setState({ buying: true })
@@ -92,18 +83,7 @@ class RoboBuilder extends Component {
     }
 
     realizedCheckoutHandler = () => {
-
-        const queryParams = [];
-        for (let i in this.state.parts) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.parts[i]));
-        }
-        queryParams.push('price=' + this.state.totalPrice);
-        const queryString = queryParams.join('&');
-
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.history.push('/checkout');
     }
 
     render() {
@@ -130,8 +110,8 @@ class RoboBuilder extends Component {
                         partAdded={this.props.onPartAdded}
                         partSubtracted={this.props.onPartDeleted}
                         disabled={disabledInfo}
-                        price={this.state.totalPrice}
-                        buyable={this.state.buyable}
+                        price={this.props.price}
+                        buyable={this.updateBuyState(this.props.prts)}
                         bought={this.buyHandler}
                     />
                 </>
@@ -140,7 +120,7 @@ class RoboBuilder extends Component {
                 parts={this.props.prts}
                 buyCancelled={this.cancelCheckoutHandler}
                 buyRealized={this.realizedCheckoutHandler}
-                price={this.state.totalPrice}
+                price={this.props.price}
             />
         }
 
@@ -164,7 +144,8 @@ class RoboBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        prts: state.parts
+        prts: state.parts,
+        price: state.totalPrice
     }
 }
 

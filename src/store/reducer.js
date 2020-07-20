@@ -11,6 +11,14 @@ const initialState = {
     totalPrice: 0
 };
 
+const PARTS_PRICES = {
+    ahead: 100.50,
+    arms1: 150.75,
+    arms2: 125.25,
+    arms3: 175.55,
+    legs1: 225.99
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_PART:
@@ -19,7 +27,8 @@ const reducer = (state = initialState, action) => {
                 parts: {
                     ...state.parts,
                     [action.partName]: state.parts[action.partName] + 1
-                }
+                },
+                totalPrice: state.totalPrice + PARTS_PRICES[action.partName]
             };
 
         case actionTypes.DELETE_PART:
@@ -28,7 +37,8 @@ const reducer = (state = initialState, action) => {
                 parts: {
                     ...state.parts,
                     [action.partName]: state.parts[action.partName] - 1
-                }
+                },
+                totalPrice: state.totalPrice - PARTS_PRICES[action.partName]
             };
         default:
             return state;

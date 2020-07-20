@@ -4,6 +4,7 @@ import classes from './ContactInfo.module.css';
 import axios from '../../../axios-orders';
 import Loading from '../../../components/UI/Loading/Loading';
 import Input from '../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContactInfo extends Component {
     state = {
@@ -104,7 +105,7 @@ class ContactInfo extends Component {
             formData[formElId] = this.state.orderForm[formElId].value;
         }
         const order = {
-            parts: this.props.parts,
+            parts: this.props.prts,
             price: this.props.price,
             orderData: formData
         }
@@ -202,4 +203,11 @@ class ContactInfo extends Component {
 
 }
 
-export default ContactInfo;
+const mapStateToProps = state => {
+    return {
+        prts: state.parts,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactInfo);
